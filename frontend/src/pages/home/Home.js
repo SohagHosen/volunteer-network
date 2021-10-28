@@ -6,7 +6,7 @@ const Home = () => {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/events")
+      .get("https://floating-inlet-31216.herokuapp.com/events")
       .then((res) => setEvents(res.data));
   }, []);
   return (

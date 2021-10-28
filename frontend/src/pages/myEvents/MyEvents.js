@@ -7,18 +7,22 @@ const MyEvents = () => {
   const { user } = useAuth();
   useEffect(() => {
     axios
-      .post("http://localhost:8000/events", { email: user.email })
+      .post("https://floating-inlet-31216.herokuapp.com/events", {
+        email: user.email,
+      })
       .then((res) => setEvents(res.data))
       .catch();
   }, []);
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8000/events/${id}`).then((res) => {
-      console.log(res);
-      if (res.data.deletedCount === 1) {
-        const remaining = events.filter((event) => event._id !== id);
-        setEvents(remaining);
-      }
-    });
+    axios
+      .delete(`https://floating-inlet-31216.herokuapp.com/events/${id}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.deletedCount === 1) {
+          const remaining = events.filter((event) => event._id !== id);
+          setEvents(remaining);
+        }
+      });
   };
   return (
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 container mx-auto my-10">

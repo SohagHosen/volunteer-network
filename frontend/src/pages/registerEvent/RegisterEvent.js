@@ -21,12 +21,14 @@ const RegisterEvent = () => {
     data.date = startDate;
     const newData = { ...data, eventId: event.id, img: event.img };
 
-    axios.post("http://localhost:8000/register", newData).then((res) => {
-      if (res.data.insertedId) {
-        alert("Registration Successful");
-        history.push("/myEvents");
-      }
-    });
+    axios
+      .post("https://floating-inlet-31216.herokuapp.com/register", newData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("Registration Successful");
+          history.push("/myEvents");
+        }
+      });
   };
   useEffect(() => {
     setEvent(location.state);

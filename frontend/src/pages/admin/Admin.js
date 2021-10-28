@@ -4,7 +4,7 @@ const Admin = () => {
   const [allRegisters, setAllRegisters] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/register")
+      .get("https://floating-inlet-31216.herokuapp.com/register")
       .then(function (response) {
         setAllRegisters(response.data);
       })
@@ -14,14 +14,16 @@ const Admin = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8000/register/${id}`).then((res) => {
-      if (res.data.deletedCount === 1) {
-        const remaining = allRegisters.filter(
-          (register) => register._id !== id
-        );
-        setAllRegisters(remaining);
-      }
-    });
+    axios
+      .delete(`https://floating-inlet-31216.herokuapp.com/register/${id}`)
+      .then((res) => {
+        if (res.data.deletedCount === 1) {
+          const remaining = allRegisters.filter(
+            (register) => register._id !== id
+          );
+          setAllRegisters(remaining);
+        }
+      });
   };
   return (
     <div class="mt-20 container mx-auto">
